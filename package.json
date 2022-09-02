@@ -23,8 +23,6 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@fontsource/fira-mono": "^4.5.0",
-		"bonsai.css": "^1.2.2",
 		"cookie": "^0.4.1",
 		"leaflet": "^1.8.0"
 	}

@@ -1,0 +1,5 @@
+body,
+.leaflet-container {
+	font-family: avenir next, avenir, -apple-system, BlinkMacSystemFont, segoe ui, helvetica neue,
+		helvetica, Cantarell, Ubuntu, roboto, noto, arial, sans-serif !important;
+}
