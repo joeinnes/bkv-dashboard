@@ -1,5 +1,6 @@
 <script>
 	import { onMount, onDestroy } from 'svelte';
+	import { invalidateAll } from '$app/navigation'
 	import routeDetails from '$lib/data/routes';
 	let mapElement;
 	let map;
@@ -125,12 +126,9 @@
 			}
 		};
 
-		const fetchData = async () => {
-			const fetched = await fetch(
-				'https://futar.bkk.hu/api/query/v1/ws/otp/api/where/vehicles-for-location.json?lon=19.055768&lat=47.490398&radius=100&version=3'
-			);
-			const { data } = await fetched.json();
-			const { list } = data;
+		export let data;
+		$: {
+			let { list } = data;
 			list.forEach((vehicle) => createOrUpdateMarkerLocation(vehicle));
 			const now = new Date();
 			let threshold = new Date(now);
@@ -141,9 +139,9 @@
 					vehicleMarkers.delete(vehicleId);
 				}
 			}
-		};
-		fetchData();
-		interval = setInterval(fetchData, 5000);
+		}
+		
+		interval = setInterval(invalidateAll, 5000);
 	});
 
 	onDestroy(async () => {
